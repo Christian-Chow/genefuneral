@@ -3,6 +3,7 @@ import { Footer } from "@/components/Footer";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
 
 const coffins = [
   {
@@ -64,6 +65,10 @@ const coffins = [
 ];
 
 const Coffins = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -109,12 +114,12 @@ const Coffins = () => {
 
               {/* Back to Home */}
               <div className="text-center mt-12">
-                <Link to="/">
-                  <Button variant="outline" size="lg" className="gap-2">
+                <Button variant="outline" size="lg" className="gap-2" asChild>
+                  <Link to="/">
                     <ArrowLeft className="h-4 w-4" />
                     返回首頁
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>

@@ -1,16 +1,29 @@
 import { MapPin, ChevronDown, Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 
 export const Header = () => {
   const [isSuppliesOpen, setIsSuppliesOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileSuppliesOpen, setIsMobileSuppliesOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const servicesTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: "smooth" });
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        element?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      const element = document.getElementById(id);
+      element?.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   const handleMouseEnter = () => {
@@ -26,10 +39,26 @@ export const Header = () => {
     }, 300); // 300ms delay before closing
   };
 
+  const handleServicesMouseEnter = () => {
+    if (servicesTimeoutRef.current) {
+      clearTimeout(servicesTimeoutRef.current);
+    }
+    setIsServicesOpen(true);
+  };
+
+  const handleServicesMouseLeave = () => {
+    servicesTimeoutRef.current = setTimeout(() => {
+      setIsServicesOpen(false);
+    }, 300); // 300ms delay before closing
+  };
+
   useEffect(() => {
     return () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
+      }
+      if (servicesTimeoutRef.current) {
+        clearTimeout(servicesTimeoutRef.current);
       }
     };
   }, []);
@@ -37,10 +66,18 @@ export const Header = () => {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
     setIsMobileSuppliesOpen(false);
+    setIsMobileServicesOpen(false);
   };
 
   const handleMobileLinkClick = () => {
     closeMobileMenu();
+  };
+
+  const handleHomeClick = (e: React.MouseEvent) => {
+    if (location.pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   return (
@@ -61,12 +98,75 @@ export const Header = () => {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            <Link to="/" className="text-lg text-foreground hover:text-primary transition-colors">
+            <Link 
+              to="/" 
+              className="text-lg text-foreground hover:text-primary transition-colors"
+              onClick={handleHomeClick}
+            >
               首頁
             </Link>
-            <button onClick={() => scrollToSection("services")} className="text-lg text-foreground hover:text-primary transition-colors">
-              殯儀服務
-            </button>
+            <div 
+              className="relative"
+              onMouseEnter={handleServicesMouseEnter}
+              onMouseLeave={handleServicesMouseLeave}
+            >
+              <button className="text-lg text-foreground hover:text-primary transition-colors flex items-center gap-1">
+                殯儀服務
+                <ChevronDown className="h-4 w-4" />
+              </button>
+              {isServicesOpen && (
+                <div 
+                  className="absolute top-full left-0 mt-2 bg-card border border-border rounded-lg shadow-lg min-w-[200px] py-2 z-50"
+                  onMouseEnter={handleServicesMouseEnter}
+                  onMouseLeave={handleServicesMouseLeave}
+                >
+                  <Link
+                    to="/service/economic-hospital"
+                    className="w-full text-left px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors block"
+                    onClick={() => setIsServicesOpen(false)}
+                  >
+                    經濟醫院出殯服務
+                  </Link>
+                  <Link
+                    to="/service/buddhist-funeral"
+                    className="w-full text-left px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors block"
+                    onClick={() => setIsServicesOpen(false)}
+                  >
+                    標準殯儀館出殯 佛教套餐
+                  </Link>
+                  <Link
+                    to="/service/taoist-funeral"
+                    className="w-full text-left px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors block"
+                    onClick={() => setIsServicesOpen(false)}
+                  >
+                    標準殯儀館出殯 道教套餐
+                  </Link>
+                  <Link
+                    to="/service/non-religious-funeral"
+                    className="w-full text-left px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors block"
+                    onClick={() => setIsServicesOpen(false)}
+                  >
+                    標準殯儀館出殯 無宗教套餐
+                  </Link>
+                  <Link
+                    to="/service/church-funeral"
+                    className="w-full text-left px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors block"
+                    onClick={() => setIsServicesOpen(false)}
+                  >
+                    標準殯儀館出殯 教會套餐
+                  </Link>
+                  <button
+                    onClick={() => {
+                      scrollToSection("services");
+                      setIsServicesOpen(false);
+                    }}
+                    className="w-full text-left px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors"
+                  >
+                    家居善終服務
+                  </button>
+                </div>
+              )}
+            </div>
             <div 
               className="relative"
               onMouseEnter={handleMouseEnter}
@@ -133,19 +233,70 @@ export const Header = () => {
               <Link
                 to="/"
                 className="px-4 py-2 text-foreground hover:text-primary hover:bg-muted/50 transition-colors"
-                onClick={handleMobileLinkClick}
+                onClick={(e) => {
+                  handleMobileLinkClick();
+                  handleHomeClick(e);
+                }}
               >
                 首頁
               </Link>
-              <button
-                onClick={() => {
-                  scrollToSection("services");
-                  handleMobileLinkClick();
-                }}
-                className="text-left px-4 py-2 text-foreground hover:text-primary hover:bg-muted/50 transition-colors"
-              >
-                殯儀服務
-              </button>
+              <div className="flex flex-col">
+                <button
+                  onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                  className="flex items-center justify-between px-4 py-2 text-foreground hover:text-primary hover:bg-muted/50 transition-colors"
+                >
+                  <span>殯儀服務</span>
+                  <ChevronDown className={`h-4 w-4 transition-transform ${isMobileServicesOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {isMobileServicesOpen && (
+                  <div className="pl-4">
+                    <Link
+                      to="/service/economic-hospital"
+                      className="block px-4 py-2 text-foreground hover:text-primary hover:bg-muted/50 transition-colors"
+                      onClick={handleMobileLinkClick}
+                    >
+                      經濟醫院出殯服務
+                    </Link>
+                    <Link
+                      to="/service/buddhist-funeral"
+                      className="block px-4 py-2 text-foreground hover:text-primary hover:bg-muted/50 transition-colors"
+                      onClick={handleMobileLinkClick}
+                    >
+                      標準殯儀館出殯 佛教套餐
+                    </Link>
+                    <Link
+                      to="/service/taoist-funeral"
+                      className="block px-4 py-2 text-foreground hover:text-primary hover:bg-muted/50 transition-colors"
+                      onClick={handleMobileLinkClick}
+                    >
+                      標準殯儀館出殯 道教套餐
+                    </Link>
+                    <Link
+                      to="/service/non-religious-funeral"
+                      className="block px-4 py-2 text-foreground hover:text-primary hover:bg-muted/50 transition-colors"
+                      onClick={handleMobileLinkClick}
+                    >
+                      標準殯儀館出殯 無宗教套餐
+                    </Link>
+                    <Link
+                      to="/service/church-funeral"
+                      className="block px-4 py-2 text-foreground hover:text-primary hover:bg-muted/50 transition-colors"
+                      onClick={handleMobileLinkClick}
+                    >
+                      標準殯儀館出殯 教會套餐
+                    </Link>
+                    <button
+                      onClick={() => {
+                        handleMobileLinkClick();
+                        scrollToSection("services");
+                      }}
+                      className="w-full text-left px-4 py-2 text-foreground hover:text-primary hover:bg-muted/50 transition-colors"
+                    >
+                      家居善終服務
+                    </button>
+                  </div>
+                )}
+              </div>
               <div className="flex flex-col">
                 <button
                   onClick={() => setIsMobileSuppliesOpen(!isMobileSuppliesOpen)}
@@ -165,8 +316,8 @@ export const Header = () => {
                     </Link>
                     <button
                       onClick={() => {
-                        scrollToSection("niches");
                         handleMobileLinkClick();
+                        scrollToSection("niches");
                       }}
                       className="w-full text-left px-4 py-2 text-foreground hover:text-primary hover:bg-muted/50 transition-colors"
                     >
@@ -177,8 +328,8 @@ export const Header = () => {
               </div>
               <button
                 onClick={() => {
-                  scrollToSection("about");
                   handleMobileLinkClick();
+                  scrollToSection("about");
                 }}
                 className="text-left px-4 py-2 text-foreground hover:text-primary hover:bg-muted/50 transition-colors"
               >
@@ -186,8 +337,8 @@ export const Header = () => {
               </button>
               <button
                 onClick={() => {
-                  scrollToSection("contact");
                   handleMobileLinkClick();
+                  scrollToSection("contact");
                 }}
                 className="text-left px-4 py-2 text-foreground hover:text-primary hover:bg-muted/50 transition-colors"
               >
