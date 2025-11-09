@@ -1,4 +1,5 @@
-import { Phone } from "lucide-react";
+import { MapPin } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   const scrollToSection = (id: string) => {
@@ -23,8 +24,11 @@ export const Header = () => {
           </div>
           
           <nav className="hidden md:flex items-center gap-8">
+            <Link to="/" className="text-foreground hover:text-primary transition-colors">
+              首頁
+            </Link>
             <button onClick={() => scrollToSection("services")} className="text-foreground hover:text-primary transition-colors">
-              服務方案
+              殯儀服務
             </button>
             <button onClick={() => scrollToSection("about")} className="text-foreground hover:text-primary transition-colors">
               關於我們
@@ -36,8 +40,8 @@ export const Header = () => {
 
           <div className="flex items-center gap-4">
             <div className="hidden lg:flex items-center gap-2 text-sm">
-              <Phone className="h-4 w-4 text-primary" />
-              <span className="text-foreground">24/7: 9468 5110</span>
+              <MapPin className="h-4 w-4 text-primary" />
+              <span className="text-foreground">紅磡必嘉街1號C地鋪</span>
             </div>
           </div>
         </div>
