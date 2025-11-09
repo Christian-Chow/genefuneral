@@ -4,10 +4,15 @@ import { useParams, Link } from "react-router-dom";
 import { serviceDetails } from "@/data/services";
 import { X, ArrowLeft, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
 
 const ServiceDetails = () => {
   const { serviceId } = useParams<{ serviceId: string }>();
   const service = serviceDetails.find(s => s.id === serviceId);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [serviceId]);
 
   if (!service) {
     return (
