@@ -148,27 +148,35 @@ const ServiceDetails = () => {
             </div>
 
             {/* Image Grid Section */}
-            <div className="mt-8">
-              <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground mb-4">
-                服務圖片
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {service.image ? (
-                  <div className="w-full h-64 bg-muted/50 rounded-lg overflow-hidden">
-                    <img 
-                      src={service.image} 
-                      alt={service.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                ) : (
-                  <div className="w-full h-64 flex items-center justify-center bg-gradient-to-br from-primary/5 to-primary/10 rounded-lg">
-                    <span className="text-muted-foreground">圖片預留位置</span>
-                  </div>
-                )}
-                {/* Additional images can be added here */}
+            {(service.image || (service.images && service.images.length > 0)) && (
+              <div className="mt-8">
+                <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground mb-4">
+                  服務圖片
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {/* Main image */}
+                  {service.image && (
+                    <div className="w-full h-64 bg-muted/50 rounded-lg overflow-hidden">
+                      <img 
+                        src={service.image} 
+                        alt={service.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+                  {/* Additional images */}
+                  {service.images && service.images.map((img, index) => (
+                    <div key={index} className="w-full h-64 bg-muted/50 rounded-lg overflow-hidden">
+                      <img 
+                        src={img} 
+                        alt={`${service.title} - 圖片 ${index + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </main>

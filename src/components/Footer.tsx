@@ -1,4 +1,4 @@
-import { Phone, Mail, MapPin, MessageCircle, Facebook, Instagram } from "lucide-react";
+import { Phone, MapPin, MessageCircle, Facebook, Instagram } from "lucide-react";
 
 export const Footer = () => {
   return (
@@ -28,33 +28,33 @@ export const Footer = () => {
               <h4 className="font-semibold text-foreground mb-4">服務項目</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <a href="#services" className="text-muted-foreground hover:text-primary transition-colors">
-                    傳統禮儀
+                  <a href="/service/economic-hospital" className="text-muted-foreground hover:text-primary transition-colors">
+                    經濟醫院出殯服務
                   </a>
                 </li>
                 <li>
-                  <a href="#services" className="text-muted-foreground hover:text-primary transition-colors">
-                    現代禮儀
+                  <a href="/service/buddhist-funeral" className="text-muted-foreground hover:text-primary transition-colors">
+                    標準殯儀館出殯 佛教套餐
                   </a>
                 </li>
                 <li>
-                  <a href="#services" className="text-muted-foreground hover:text-primary transition-colors">
-                    環保葬
+                  <a href="/service/taoist-funeral" className="text-muted-foreground hover:text-primary transition-colors">
+                    標準殯儀館出殯 道教套餐
                   </a>
                 </li>
                 <li>
-                  <a href="#services" className="text-muted-foreground hover:text-primary transition-colors">
-                    政府補助
+                  <a href="/service/non-religious-funeral" className="text-muted-foreground hover:text-primary transition-colors">
+                    標準殯儀館出殯 無宗教套餐
                   </a>
                 </li>
                 <li>
-                  <a href="#services" className="text-muted-foreground hover:text-primary transition-colors">
-                    尊榮方案
+                  <a href="/service/church-funeral" className="text-muted-foreground hover:text-primary transition-colors">
+                    標準殯儀館出殯 教會套餐
                   </a>
                 </li>
                 <li>
-                  <a href="#services" className="text-muted-foreground hover:text-primary transition-colors">
-                    客製化服務
+                  <a href="/service/emergency-medical" className="text-muted-foreground hover:text-primary transition-colors">
+                    緊急醫療運送
                   </a>
                 </li>
               </ul>
@@ -64,33 +64,33 @@ export const Footer = () => {
               <h4 className="font-semibold text-foreground mb-4">其他服務</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                    生前契約
+                  <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
+                    遺體捐贈
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                    塔位服務
+                  <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
+                    生前安排好身後事
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                    法會服務
+                  <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
+                    綠色殯葬
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                    紀念品製作
+                  <a href="/niches" className="text-muted-foreground hover:text-primary transition-colors">
+                    私人骨灰龕位買賣
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                    法律諮詢
+                  <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
+                    本港土葬
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                    心理輔導
+                  <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
+                    國內墓園
                   </a>
                 </li>
               </ul>
@@ -100,21 +100,27 @@ export const Footer = () => {
               <h4 className="font-semibold text-foreground mb-4">聯絡資訊</h4>
               <div className="space-y-3 text-sm">
                 <div className="flex items-center gap-2 text-muted-foreground">
-                  <Phone className="h-4 w-4 text-primary" />
-                  <a href="tel:94685110" className="hover:text-primary transition-colors">9468 5110</a>
+                  <Phone className="h-5 w-5 text-primary" />
+                  <div className="flex flex-col">
+                    <span>聯絡電話:</span>
+                    <a href="tel:94685110" className="hover:text-primary transition-colors">9468 5110</a>
+                  </div>
                 </div>
                 <div className="flex items-center gap-2 text-muted-foreground">
-                  <MessageCircle className="h-4 w-4 text-primary" />
-                  <a href="https://wa.me/85294685110" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">+852-9468-5110</a>
+                  <MessageCircle className="h-5 w-5 text-primary" />
+                  <div className="flex flex-col">
+                    <span>WhatsApp:</span>
+                    <a href="https://wa.me/85294685110" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">+852-9468-5110</a>
+                  </div>
                 </div>
                 <div className="flex items-center gap-2 text-muted-foreground">
-                  <MapPin className="h-4 w-4 text-primary" />
-                  <span>紅磡必嘉街1號C地下</span>
+                  <MapPin className="h-5 w-5 text-primary" />
+                  <div className="flex flex-col">
+                    <span>地址：</span>
+                    <span>紅磡必嘉街1號C地下</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2 text-muted-foreground">
-                  <Mail className="h-4 w-4 text-primary" />
-                  <a href="mailto:info@funeral-service.com" className="hover:text-primary transition-colors">info@funeral-service.com</a>
-                </div>
+
               </div>
             </div>
           </div>

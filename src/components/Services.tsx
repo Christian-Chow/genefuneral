@@ -39,7 +39,7 @@ export const Services = () => {
               
               <CardHeader className="pb-4">
                 <CardTitle className="font-serif text-2xl">{service.title}</CardTitle>
-                {service.price && service.id !== "buddhist-funeral" && service.id !== "taoist-funeral" && (
+                {service.price && !service.price.includes("面議") && (
                   <div className="mt-4">
                     <span className="text-3xl font-bold text-primary">{service.price}</span>
                   </div>

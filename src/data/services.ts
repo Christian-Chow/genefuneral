@@ -5,6 +5,7 @@ export interface ServiceDetail {
   description: string;
   shortDescription?: string;
   image: string;
+  images?: string[]; // Additional images for the service images section
   recommended: boolean;
   features: string[];
   includedItems: string[];
@@ -21,7 +22,7 @@ export const serviceDetails: ServiceDetail[] = [
     image: "https://i.imgur.com/iiDggAq.png",
     recommended: true,
     features: [
-      "標準沉箱棺木",
+      "標準杬箱棺木",
       "陀羅經被一張",
       "專業女化妝師",
       "專業作工師傅理財出殯",
@@ -29,7 +30,7 @@ export const serviceDetails: ServiceDetail[] = [
       "高級雲石骨灰盅"
     ],
     includedItems: [
-      "標準沉箱棺木",
+      "標準杬箱棺木",
       "棺面名牌",
       "金銀枕頭",
       "陀羅經被一張",
@@ -72,12 +73,14 @@ export const serviceDetails: ServiceDetail[] = [
     image: "https://i.imgur.com/NCzj0Ta.jpeg",
     recommended: false,
     features: [
-      "高級標準日式棺木",
+      "高級標準日箱棺木",
       "棺面名牌",
       "標準壽衣一套",
+      "專業堂倌一名",
       "專業女化妝師",
       "專業仵工師傅接先人入館",
-      "中式靈車接先人入館"
+      "中式靈車接先人入館",
+      "「七位」和尚法師三時擊念誦經"
     ],
     includedItems: [
       "高級標準日式棺木",
@@ -215,28 +218,71 @@ export const serviceDetails: ServiceDetail[] = [
   {
     id: "non-religious-funeral",
     title: "標準殯儀館出殯 無宗教套餐",
-    price: "",
+    price: "價格：面議",
     description: "簡單而莊嚴的告別儀式，讓逝者得到最尊嚴的送別",
     image: "https://i.imgur.com/JujoE3H.png",
     recommended: false,
     features: [
-      "完整傳統儀式",
-      "專業禮儀師",
-      "靈堂佈置",
-      "誦經服務",
-      "告別式會場",
-      "出殯車隊"
+      "高級標準日箱棺木",
+      "專業女化妝師",
+      "專業堂倌一名",
+      "專業仵工師傅接先人入館",
+      "中式靈車接先人入館",
+      "禮堂佈置"
     ],
-    includedItems: [],
-    excludedItems: [],
-    freeServices: []
+    includedItems: [
+      "高級標準日箱棺木",
+      "棺木內軟墊絲綢裝裱",
+      "棺面名牌",
+      "枕頭或軟枕",
+      "高級十字被一張",
+      "專業女化妝師",
+      "專業堂倌一名",
+      "專業仵工師傅接先人入館",
+      "中式靈車接先人入館",
+      "專業仵工師傅扶靈出殯",
+      "中式靈車出殯上山",
+      "（可改加費改用西式靈車）",
+      "旅巴50座（上山落山兩程）",
+      "禮堂佈置",
+      "16吋彩色大相",
+      "蠟燭",
+      "禮賓簽到簿及壽禮簿各一本",
+      "包好100封吉儀（一蚊紙巾糖）",
+      "包好50封纓紅利是（兩蚊）",
+      "蒸餾水一箱24支",
+      "Temple紙巾一盒",
+      "火盤碌柚葉水除穢氣",
+      "骨灰布袋一個",
+      "高級雲石骨灰盅",
+      "骨灰盅刻字貼金箔"
+    ],
+    excludedItems: [
+      "靈堂租金",
+      "花籃一個$400起",
+      "政府火化費 $1220",
+      "死亡證$140一張"
+    ],
+    freeServices: [
+      "預約醫院領遺體日期和時間",
+      "申請死亡證及預約火化爐",
+      "領取先人骨灰",
+      "協助申請政府食環署或華人永遠墳場之骨灰龕位",
+      "協助申請政府食環署紀念花園撒灰或海上撒灰",
+      "協助申請先人骨灰出口文件",
+      "擇吉日吉時出殯",
+      "擇吉日吉時上位",
+      "查先人回魂日子時辰及頭七至尾七"
+    ]
   },
   {
     id: "church-funeral",
     title: "標準殯儀館出殯 教會套餐",
-    price: "",
-    description: "遵循傳統習俗，提供完整的告別儀式，讓逝者得到最尊嚴的送別",
+    price: "價格：面議",
+    description: "此服務適合基督教信仰的家庭。提供符合基督教傳統的莊嚴告別儀式，包括十字架、白蠟燭等聖具，讓逝者在信仰的陪伴下得到最尊嚴的送別。",
+    shortDescription: "適合基督教信仰的家庭，符合基督教傳統的莊嚴告別儀式。",
     image: "https://i.imgur.com/QgSj7Uz.png",
+    images: ["https://i.imgur.com/n2zFob8.png"],
     recommended: false,
     features: [
       "高級標準白色日箱棺木",
@@ -246,9 +292,52 @@ export const serviceDetails: ServiceDetail[] = [
       "中式靈車接先人入館",
       "十字架 & 白蠟燭"
     ],
-    includedItems: [],
-    excludedItems: [],
-    freeServices: []
+    includedItems: [
+      "高級標準白色日箱棺木",
+      "棺木內白色軟墊絲綢裝裱",
+      "棺面名牌",
+      "金銀枕頭或軟枕",
+      "高級十字被一張",
+      "專業女化妝師",
+      "專業堂倌一名",
+      "專業仵工師傅接先人入館",
+      "中式靈車接先人入館",
+      "專業仵工師傅運財出殯",
+      "中式靈車出殯上山",
+      "（可改用西式靈車）",
+      "旅巴50座（上山落山兩程）",
+      "禮堂佈置",
+      "16吋彩色大相",
+      "十字架",
+      "白蠟燭",
+      "聖具（如需要）",
+      "禮賓簽到簿及壽禮簿各一本",
+      "包好100封吉儀（一蚊紙巾糖）",
+      "包好50封纓紅利是（兩蚊）",
+      "蒸餾水一箱24支",
+      "Temple紙巾一盒",
+      "火盤碌柚葉水除穢氣",
+      "骨灰布袋一個",
+      "高級雲石骨灰盅",
+      "骨灰盅刻字貼金箔"
+    ],
+    excludedItems: [
+      "靈堂租金",
+      "花籃一個$400起",
+      "政府火化費 $1220",
+      "死亡證$140一張"
+    ],
+    freeServices: [
+      "預約醫院領遺體日期和時間",
+      "申請死亡證及預約火化爐",
+      "領取先人骨灰",
+      "協助申請政府食環署或華人永遠墳場之骨灰龕位",
+      "協助申請政府食環署紀念花園撒灰或海上撒灰",
+      "協助申請先人骨灰出口文件",
+      "擇吉日吉時出殯",
+      "擇吉日吉時上位",
+      "查先人回魂日子時辰及頭七至尾七"
+    ]
   },
   {
     id: "emergency-medical",
