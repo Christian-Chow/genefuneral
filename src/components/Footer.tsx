@@ -64,33 +64,38 @@ export const Footer = () => {
               <h4 className="font-semibold text-foreground mb-4">其他服務</h4>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
+                  <a href="/body-donation" className="text-muted-foreground hover:text-primary transition-colors">
                     遺體捐贈
                   </a>
                 </li>
                 <li>
-                  <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
+                  <a href="/pre-planning" className="text-muted-foreground hover:text-primary transition-colors">
                     生前安排好身後事
                   </a>
                 </li>
                 <li>
-                  <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
+                  <a href="/green-burial" className="text-muted-foreground hover:text-primary transition-colors">
                     綠色殯葬
                   </a>
                 </li>
                 <li>
-                  <a href="/niches" className="text-muted-foreground hover:text-primary transition-colors">
+                  <a href="/private-niche-sales" className="text-muted-foreground hover:text-primary transition-colors">
                     私人骨灰龕位買賣
                   </a>
                 </li>
                 <li>
-                  <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
+                  <a href="/local-burial" className="text-muted-foreground hover:text-primary transition-colors">
                     本港土葬
                   </a>
                 </li>
                 <li>
-                  <a href="#contact" className="text-muted-foreground hover:text-primary transition-colors">
+                  <a href="/mainland-cemetery" className="text-muted-foreground hover:text-primary transition-colors">
                     國內墓園
+                  </a>
+                </li>
+                <li>
+                  <a href="/useful-resources" className="text-muted-foreground hover:text-primary transition-colors">
+                    實用資料
                   </a>
                 </li>
               </ul>
