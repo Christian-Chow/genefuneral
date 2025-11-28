@@ -17,7 +17,9 @@ export const Header = () => {
     const scrollToElement = (elementId: string) => {
       const element = document.getElementById(elementId);
       if (element) {
-        const headerOffset = 100; // Offset to account for sticky header
+        // Larger offset for mobile, smaller for desktop
+        const isMobile = window.innerWidth < 768; // md breakpoint
+        const headerOffset = isMobile ? 450 : 100; // More offset on mobile
         const elementPosition = element.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
