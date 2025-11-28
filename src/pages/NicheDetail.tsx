@@ -1,12 +1,36 @@
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
+import { niches } from "./Niches";
 
-const PrivateNicheSales = () => {
-  // Image URL - replace with actual image URL when available
-  const imageUrl = "https://i.imgur.com/OWM6xOa.jpeg";
+const NicheDetail = () => {
+  const { nicheId } = useParams<{ nicheId: string }>();
+  const nicheIndex = nicheId ? parseInt(nicheId, 10) : -1;
+  const niche = nicheIndex >= 0 && nicheIndex < niches.length ? niches[nicheIndex] : null;
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [nicheId]);
+
+  if (!niche) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-1 flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold mb-4">骨灰龕未找到</h1>
+            <Link to="/niches">
+              <Button>返回骨灰龕列表</Button>
+            </Link>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -15,41 +39,31 @@ const PrivateNicheSales = () => {
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">
             {/* Back Button */}
-            <Link to="/">
+            <Link to="/niches">
               <Button variant="ghost" className="mb-4">
                 <ArrowLeft className="mr-2 h-4 w-4" />
-                返回首頁
+                返回骨灰龕列表
               </Button>
             </Link>
 
-            {/* Title */}
-            <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-6">
-              私人骨灰龕位買賣
-            </h1>
-
             {/* Image Section */}
             <div className="mb-8">
-              <div className="w-full h-64 md:h-96 bg-transparent rounded-lg overflow-hidden flex items-center justify-center p-4">
-                {imageUrl ? (
-                  <img 
-                    src={imageUrl} 
-                    alt="私人骨灰龕位買賣"
-                    className="w-full h-full object-contain"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-transparent">
-                    <p className="text-muted-foreground text-sm">圖片位置</p>
-                  </div>
-                )}
+              <div className="w-full h-96 bg-muted/50 rounded-lg overflow-hidden flex items-center justify-center p-8">
+                <img
+                  src={niche.image}
+                  alt={niche.name}
+                  className="w-full h-full object-contain"
+                  loading="eager"
+                  crossOrigin="anonymous"
+                  referrerPolicy="no-referrer"
+                />
               </div>
             </div>
 
-            {/* Content */}
-            <div className="prose prose-lg max-w-none">
-              <p className="text-lg text-foreground leading-relaxed">
-                選擇私人骨灰龕場作為長遠安排，我們提供多個合法註冊的私營龕場選項，遍佈港九新界，設施完善、交通便利，並設有多種風格（傳統佛教、道教、基督教、現代設計）供客戶選擇。服務包括選位、購置、安奉、供品安排及代辦申報手續，亦可處理骨灰移位、合葬、紀念位設立等個性化需要。
-              </p>
-            </div>
+            {/* Title */}
+            <h1 className="font-serif text-4xl md:text-5xl font-bold text-foreground mb-6 text-center">
+              {niche.name}
+            </h1>
 
             {/* Contact CTA */}
             <div className="mt-8 p-6 bg-muted/50 rounded-lg text-center">
@@ -86,5 +100,5 @@ const PrivateNicheSales = () => {
   );
 };
 
-export default PrivateNicheSales;
+export default NicheDetail;
 

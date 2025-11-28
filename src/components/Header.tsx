@@ -14,15 +14,27 @@ export const Header = () => {
   const navigate = useNavigate();
 
   const scrollToSection = (id: string) => {
+    const scrollToElement = (elementId: string) => {
+      const element = document.getElementById(elementId);
+      if (element) {
+        const headerOffset = 100; // Offset to account for sticky header
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
+      }
+    };
+
     if (location.pathname !== "/") {
       navigate("/");
       setTimeout(() => {
-        const element = document.getElementById(id);
-        element?.scrollIntoView({ behavior: "smooth" });
+        scrollToElement(id);
       }, 100);
     } else {
-      const element = document.getElementById(id);
-      element?.scrollIntoView({ behavior: "smooth" });
+      scrollToElement(id);
     }
   };
 
@@ -112,7 +124,7 @@ export const Header = () => {
           </Link>
           
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-3 lg:gap-5 xl:gap-8 flex-1 justify-center mx-2 lg:mx-4 min-w-0">
+          <nav className="hidden md:flex items-center gap-3 lg:gap-5 xl:gap-8 flex-1 justify-center mx-2 lg:mx-4 min-w-0">
             <Link 
               to="/" 
               className="text-base md:text-lg text-foreground hover:text-primary transition-colors whitespace-nowrap"
@@ -147,28 +159,28 @@ export const Header = () => {
                     className="w-full text-left px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors block"
                     onClick={() => setIsServicesOpen(false)}
                   >
-                    標準殯儀館出殯 佛教套餐
+                    佛教套餐
                   </Link>
                   <Link
                     to="/service/taoist-funeral"
                     className="w-full text-left px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors block"
                     onClick={() => setIsServicesOpen(false)}
                   >
-                    標準殯儀館出殯 道教套餐
+                    道教套餐
                   </Link>
                   <Link
                     to="/service/non-religious-funeral"
                     className="w-full text-left px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors block"
                     onClick={() => setIsServicesOpen(false)}
                   >
-                    標準殯儀館出殯 無宗教套餐
+                    無宗教套餐
                   </Link>
                   <Link
                     to="/service/church-funeral"
                     className="w-full text-left px-4 py-2 text-foreground hover:bg-muted hover:text-primary transition-colors block"
                     onClick={() => setIsServicesOpen(false)}
                   >
-                    標準殯儀館出殯 教會套餐
+                    教會套餐
                   </Link>
                   <button
                     onClick={() => {
@@ -255,7 +267,7 @@ export const Header = () => {
 
           {/* Mobile Hamburger Button */}
           <button
-            className="lg:hidden p-2 text-foreground hover:text-primary transition-colors"
+            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -269,7 +281,7 @@ export const Header = () => {
 
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
-          <nav className="lg:hidden border-t border-border py-4">
+          <nav className="md:hidden border-t border-border py-4">
             <div className="flex flex-col gap-2">
               <Link
                 to="/"

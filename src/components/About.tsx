@@ -4,17 +4,17 @@ const commitments = [
   {
     icon: Eye,
     title: "透明報價",
-    description: "絕不隱藏費用，全程清晰說明"
+    description: ["絕不隱藏費用", "全程清晰說明"]
   },
   {
     icon: Clock,
     title: "24小時支援",
-    description: "專人全天候應急協助，及時回應需求"
+    description: ["專人全天候應急協助", "及時回應需求"]
   },
   {
     icon: Scale,
     title: "尊重傳統，創新服務",
-    description: "結合現代化管理，保留儀式莊嚴感的同時提升效率"
+    description: ["結合現代化管理", "保留儀式莊嚴感的同時提升效率"]
   }
 ];
 
@@ -54,7 +54,10 @@ export const About = () => {
                     <commitment.icon className="h-8 w-8 text-primary" />
                   </div>
                   <h4 className="font-semibold text-lg text-foreground mb-3">{commitment.title}</h4>
-                  <p className="text-muted-foreground">{commitment.description}</p>
+                  <p className="text-muted-foreground">
+                    {commitment.description[0]}<br />
+                    {commitment.description[1]}
+                  </p>
                 </div>
               ))}
             </div>

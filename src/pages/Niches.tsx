@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect } from "react";
 
-const niches = [
+export const niches = [
   // TODO: Add niche names and image URLs here
   // Example structure:
   // {
@@ -144,9 +144,10 @@ const Niches = () => {
               {niches.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
                   {niches.map((niche, index) => (
-                    <div
+                    <Link
                       key={index}
-                      className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-2 border border-border"
+                      to={`/niche/${index}`}
+                      className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-2 border border-border block"
                     >
                       <div className="h-64 bg-muted/30 overflow-hidden flex items-center justify-center p-4">
                         <img
@@ -163,7 +164,7 @@ const Niches = () => {
                           {niche.name}
                         </h3>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               ) : (

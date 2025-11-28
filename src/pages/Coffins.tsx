@@ -51,7 +51,7 @@ const coffins = [
     image: "https://i.imgur.com/XWkrDpV.jpeg"
   },
   {
-    name: "遥年板庄",
+    name: "遠年木材土葬棺",
     image: "https://i.imgur.com/RgSBxbw.png"
   },
   {

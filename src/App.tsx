@@ -8,6 +8,7 @@ import NotFound from "./pages/NotFound";
 import ServiceDetails from "./pages/ServiceDetails";
 import Coffins from "./pages/Coffins";
 import Niches from "./pages/Niches";
+import NicheDetail from "./pages/NicheDetail";
 import BodyDonation from "./pages/other-services/BodyDonation";
 import PrePlanning from "./pages/other-services/PrePlanning";
 import GreenBurial from "./pages/other-services/GreenBurial";
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/service/:serviceId" element={<ServiceDetails />} />
           <Route path="/coffins" element={<Coffins />} />
           <Route path="/niches" element={<Niches />} />
+          <Route path="/niche/:nicheId" element={<NicheDetail />} />
           <Route path="/body-donation" element={<BodyDonation />} />
           <Route path="/pre-planning" element={<PrePlanning />} />
           <Route path="/green-burial" element={<GreenBurial />} />

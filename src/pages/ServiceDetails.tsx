@@ -39,8 +39,8 @@ const ServiceDetails = () => {
           <div className="max-w-4xl mx-auto">
             {/* Back Button */}
             <Link to="/#services">
-              <Button variant="ghost" className="mb-4">
-                <ArrowLeft className="mr-2 h-4 w-4" />
+              <Button variant="ghost" className="mb-4 text-base md:text-lg md:px-6 md:py-3">
+                <ArrowLeft className="mr-2 h-4 w-4 md:h-5 md:w-5" />
                 返回首頁
               </Button>
             </Link>
@@ -99,7 +99,7 @@ const ServiceDetails = () => {
                 {service.includedItems.length > 0 && (
                   <div>
                     <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground mb-4">
-                      包含項目
+                      服務包括
                     </h2>
                     <ol className="space-y-2 list-decimal list-inside">
                       {service.includedItems.map((item, index) => (

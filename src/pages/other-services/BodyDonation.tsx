@@ -47,10 +47,13 @@ const BodyDonation = () => {
             {/* Content */}
             <div className="prose prose-lg max-w-none">
               <p className="text-lg text-foreground leading-relaxed mb-4">
-                遺體捐贈是極具愛心與奉獻精神的行為，亦被尊稱為「無言老師」或「大體老師」。捐贈者的遺體將會被醫學院用作教學、解剖練習及醫學研究用途，幫助培育新一代的醫護人才。捐贈須在生前自願簽署授權同意書，並符合身體狀況與相關規定。
+                遺體捐贈是極具愛心與奉獻精神的行為，被尊稱為「無言老師」或「大體老師」。捐贈者的遺體將會被醫學院用作教學、解剖練習及醫學研究用途，幫助培育新一代的醫護人才。捐贈須在生前自願簽署授權同意書，並符合身體狀況與相關規定。
               </p>
               <p className="text-lg text-foreground leading-relaxed">
-                完成教學任務後，遺體將由學校安排莊嚴的告別儀式或火化。這是一種以身作則、無私貢獻社會的方式，備受尊重。
+                完成教學任務後，遺體將安排莊嚴的告別儀式或火化。這是一種以身作則、無私貢獻社會的方式，備受尊重。
+              </p>
+              <p className="text-lg text-foreground leading-relaxed">
+                「不言之教，無言感激。生命有限，知識永存。一點一滴，銘記於心。無言老師，如何感激。」
               </p>
             </div>
 
